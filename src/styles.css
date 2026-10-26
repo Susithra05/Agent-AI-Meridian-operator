@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f3eee4;
+  --color-sheet: #fffcf6;
+  --color-ink: #1c1916;
+  --color-mute: #6f675e;
+  --color-line: #e4d9c8;
+  --color-copper: #b8431f;
+  --color-copper-ink: #fff7f2;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --shadow-card:
+    0px 0px 0px 1px rgba(28, 25, 22, 0.06), 0px 1px 2px -1px rgba(28, 25, 22, 0.06),
+    0px 2px 4px 0px rgba(28, 25, 22, 0.04);
+  --shadow-card-hover:
+    0px 0px 0px 1px rgba(28, 25, 22, 0.1), 0px 2px 8px -2px rgba(28, 25, 22, 0.08);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-copper);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-copper) 28%, white);
+    color: var(--color-ink);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.trace-in {
+  animation: rise 180ms ease-out;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.live-dot {
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace-in,
+  .live-dot {
+    animation: none;
+  }
+}
